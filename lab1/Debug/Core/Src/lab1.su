@@ -1,0 +1,16 @@
+../Core/Src/lab1.c:13:6:ex_1_handle	8	static
+../Core/Src/lab1.c:30:13:traffic_light_handle	24	static
+../Core/Src/lab1.c:64:6:ex_2_handle	8	static
+../Core/Src/lab1.c:73:6:ex_3_handle	8	static
+../Core/Src/lab1.c:98:6:display7Seg	16	static
+../Core/Src/lab1.c:138:6:ex_4_handle	8	static
+../Core/Src/lab1.c:145:6:ex_5_handle	8	static
+../Core/Src/lab1.c:176:6:sequence_leds	16	static
+../Core/Src/lab1.c:185:6:ex_6_handle	8	static
+../Core/Src/lab1.c:192:6:clearAllClock	8	static
+../Core/Src/lab1.c:198:6:ex_7_handle	8	static
+../Core/Src/lab1.c:204:6:setNumberOnClock	16	static
+../Core/Src/lab1.c:209:6:ex_8_handle	8	static
+../Core/Src/lab1.c:215:6:clearNumberOnClock	16	static
+../Core/Src/lab1.c:220:6:ex_9_handle	8	static
+../Core/Src/lab1.c:226:6:ex_10_handle	8	static

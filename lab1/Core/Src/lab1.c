@@ -29,11 +29,11 @@ void ex_1_handle()
 
 static void traffic_light_handle(TrafficLight * light_state, uint16_t *leds, uint32_t * count_seconds)
 {   
-    HAL_GPIO_WritePin(GPIOB, leds[0] | leds[1] | leds[2], 0);
+    HAL_GPIO_WritePin(GPIOB, leds[0] | leds[1] | leds[2], 1);
     switch (*light_state)
     {
     case RED_LIGHT:
-        HAL_GPIO_WritePin(GPIOB, leds[*light_state], 1);
+        HAL_GPIO_WritePin(GPIOB, leds[*light_state], 0);
         if (*count_seconds >= TRAFFIC_LIGHT_TIME[*light_state])
         {
             *light_state = GREEN_LIGHT;
@@ -41,7 +41,7 @@ static void traffic_light_handle(TrafficLight * light_state, uint16_t *leds, uin
         }
         break;
     case YELLOW_LIGHT:
-        HAL_GPIO_WritePin(GPIOB, leds[*light_state], 1);
+        HAL_GPIO_WritePin(GPIOB, leds[*light_state], 0);
         if (*count_seconds >= TRAFFIC_LIGHT_TIME[*light_state])
         {
             *light_state = RED_LIGHT;
@@ -49,7 +49,7 @@ static void traffic_light_handle(TrafficLight * light_state, uint16_t *leds, uin
         }
         break;
     case GREEN_LIGHT:
-        HAL_GPIO_WritePin(GPIOB, leds[*light_state], 1);
+        HAL_GPIO_WritePin(GPIOB, leds[*light_state], 0);
         if (*count_seconds >= TRAFFIC_LIGHT_TIME[*light_state])
         {
             *light_state = YELLOW_LIGHT;
@@ -193,7 +193,7 @@ void clearAllClock()
 {
     HAL_GPIO_WritePin(GPIOB, LED_1_Pin |LED_2_Pin| LED_3_Pin| LED_11_Pin
                             |LED_12_Pin|LED_4_Pin| LED_5_Pin| LED_6_Pin
-                            |LED_7_Pin |LED_8_Pin| LED_9_Pin| LED_10_Pin, 0);
+                            |LED_7_Pin |LED_8_Pin| LED_9_Pin| LED_10_Pin, 1);
 }
 void ex_7_handle()
 {
@@ -203,7 +203,7 @@ void ex_7_handle()
 
 void setNumberOnClock(int num)
 {
-    HAL_GPIO_WritePin(GPIOB, TIME_CLOCK_LED[num % 12], 1);
+    HAL_GPIO_WritePin(GPIOB, TIME_CLOCK_LED[num % 12], 0);
 }
 
 void ex_8_handle()
@@ -214,7 +214,7 @@ void ex_8_handle()
 
 void clearNumberOnClock(int num)
 {
-    HAL_GPIO_WritePin(GPIOB, TIME_CLOCK_LED[num % 12], 0);
+    HAL_GPIO_WritePin(GPIOB, TIME_CLOCK_LED[num % 12], 1);
 }
 
 void ex_9_handle()
@@ -228,8 +228,9 @@ void ex_10_handle()
     static uint8_t hour = 0;
     static uint8_t minute = 0;
     static uint8_t second = 0;
-
-    if (second >= 60)
+    if (hour == 0 && minute == 0 && second == 0)
+        clearAllClock();
+   if (second >= 60)
     {
         second = 0;
         clearNumberOnClock(minute);

@@ -93,7 +93,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    ex_10_handle();
+    ex_5_handle();
 //    ex_3_handle();
     HAL_Delay(1000);
     

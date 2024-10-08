@@ -1,0 +1,16 @@
+../Core/Src/lab2.c:64:6:display7Seg	16	static
+../Core/Src/lab2.c:104:6:update7SEG	16	static
+../Core/Src/lab2.c:111:6:scanning_seg_led	24	static
+../Core/Src/lab2.c:119:6:ex_1_handle	16	static
+../Core/Src/lab2.c:132:6:ex_1_handle_2	8	static
+../Core/Src/lab2.c:139:6:ex_2_handle	16	static
+../Core/Src/lab2.c:154:6:ex_2_handle_1	8	static
+../Core/Src/lab2.c:161:6:dot_toggle	8	static
+../Core/Src/lab2.c:166:6:ex_3_handle	16	static
+../Core/Src/lab2.c:179:6:ex_4_handle	16	static
+../Core/Src/lab2.c:194:6:generate_led_buffer	16	static
+../Core/Src/lab2.c:202:6:ex_5_update_buffer	8	static
+../Core/Src/lab2.c:223:6:ex_5_scanning	8	static
+../Core/Src/lab2.c:228:6:row_on	24	static
+../Core/Src/lab2.c:234:6:shift_row	16	static
+../Core/Src/lab2.c:243:6:scanning_matrix	8	static

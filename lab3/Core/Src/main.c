@@ -52,10 +52,12 @@ static void MX_GPIO_Init(void);
 static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
 
 /* USER CODE END 0 */
 
@@ -89,13 +91,24 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-
+  HAL_TIM_Base_Start_IT(&htim2);
+  Scheduler_Init();
+  light_1 = INIT;
+  light_2 = INIT;
+  modify = INIT_SETTING;
+  mode = NORMAL_MODE;
+  Scheduler_Add_Task(&fsm_for_input_processing, 1, freq_to_tick(FREQ_BUTTON));
+  Scheduler_Add_Task(&modify_run, 1, 1);
+  Scheduler_Add_Task(&automatic_run, 1, 1);
+  Scheduler_Add_Task(&scanning_seg_led, 3, freq_to_tick(FREQ_SCANNING));
+  Scheduler_Add_Task(&update_7seg_buffer_time, 7, ONE_SECOND);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    Scheduler_Dispatch_Tasks();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -202,7 +215,7 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, SEG_0_Pin|SEG_1_Pin|SEG_2_Pin|SEG_3_Pin
                           |SEG_4_Pin|SEG_5_Pin|SEG_6_Pin|EN_0_Pin
-                          |EN_1_Pin|EN_2_Pin, GPIO_PIN_RESET);
+                          |EN_1_Pin|EN_2_Pin|EN_3_Pin|EN_4_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, RED_1_Pin|YELLOW_1_Pin|GREEN_1_Pin|RED_2_Pin
@@ -210,10 +223,10 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pins : SEG_0_Pin SEG_1_Pin SEG_2_Pin SEG_3_Pin
                            SEG_4_Pin SEG_5_Pin SEG_6_Pin EN_0_Pin
-                           EN_1_Pin EN_2_Pin */
+                           EN_1_Pin EN_2_Pin EN_3_Pin EN_4_Pin */
   GPIO_InitStruct.Pin = SEG_0_Pin|SEG_1_Pin|SEG_2_Pin|SEG_3_Pin
                           |SEG_4_Pin|SEG_5_Pin|SEG_6_Pin|EN_0_Pin
-                          |EN_1_Pin|EN_2_Pin;
+                          |EN_1_Pin|EN_2_Pin|EN_3_Pin|EN_4_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -228,24 +241,25 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : BTN_0_Pin BTN_1_Pin */
-  GPIO_InitStruct.Pin = BTN_0_Pin|BTN_1_Pin;
+  /*Configure GPIO pins : BTN_0_Pin BTN_1_Pin BTN_2_Pin */
+  GPIO_InitStruct.Pin = BTN_0_Pin|BTN_1_Pin|BTN_2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : BTN_2_Pin */
-  GPIO_InitStruct.Pin = BTN_2_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(BTN_2_GPIO_Port, &GPIO_InitStruct);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
-
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+    if (htim->Instance == TIM2)
+    {
+        Scheduler_Update();
+        updateTimer();
+    }
+}
 /* USER CODE END 4 */
 
 /**

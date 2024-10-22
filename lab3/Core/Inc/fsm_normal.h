@@ -8,14 +8,19 @@
 #ifndef INC_FSM_AUTOMATIC_H_
 #define INC_FSM_AUTOMATIC_H_
 
-
 typedef enum {
-    INIT, 
+    RED,
     GREEN,
     AMBER,
-    RED,
-} traffcLightAuto_t;
+    MODIFY,
+    INIT
+} trafficLight_t;
 
+extern uint8_t time[3];
+extern trafficLight_t light_1;
+extern trafficLight_t light_2;
+
+void automatic_run(void);
 
 #endif /* INC_FSM_AUTOMATIC_H_ */
 

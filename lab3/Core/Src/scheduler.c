@@ -141,3 +141,10 @@ uint8_t Scheduler_Remove_Task( uint32_t TaskID) {
 	return 0; // return status
 }
 
+uint16_t freq_to_tick(uint16_t freq)
+{
+    uint16_t tick = FREQ_TO_TICK(freq);
+    if (tick < 1)
+        tick = 1;
+    return tick;
+}

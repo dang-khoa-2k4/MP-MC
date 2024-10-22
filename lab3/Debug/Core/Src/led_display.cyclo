@@ -1,0 +1,7 @@
+../Core/Src/led_display.c:13:6:display7Seg	11
+../Core/Src/led_display.c:53:6:generate_led_buffer	1
+../Core/Src/led_display.c:61:6:update7SEG	2
+../Core/Src/led_display.c:70:6:scanning_seg	1
+../Core/Src/led_display.c:78:6:scanning_seg_led	1
+../Core/Src/led_display.c:84:6:update_7seg_buffer_time	4
+../Core/Src/led_display.c:96:6:update_7seg_buffer	3

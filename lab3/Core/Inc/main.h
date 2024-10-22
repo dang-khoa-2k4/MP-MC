@@ -31,11 +31,13 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
-#include <stdint.h>
-
+#include "fsm_normal.h"
+#include "fsm_setting.h"
 #include "input_reading.h"
-
+#include "input_processing.h"
+#include "led_display.h"
+#include "sw_timer.h"
+#include "scheduler.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -87,6 +89,10 @@ void Error_Handler(void);
 #define EN_1_GPIO_Port GPIOA
 #define EN_2_Pin GPIO_PIN_10
 #define EN_2_GPIO_Port GPIOA
+#define EN_3_Pin GPIO_PIN_11
+#define EN_3_GPIO_Port GPIOA
+#define EN_4_Pin GPIO_PIN_12
+#define EN_4_GPIO_Port GPIOA
 #define BTN_0_Pin GPIO_PIN_13
 #define BTN_0_GPIO_Port GPIOA
 #define BTN_1_Pin GPIO_PIN_14

@@ -10,12 +10,6 @@
 ButtonState buttonState[N0_OF_BUTTONS] = { BUTTON_RELEASED };
 uint8_t first_time = 1;
 
-void clone_time()
-{
-    modify_time[RED]      = time[RED]; 
-    modify_time[GREEN]    = time[GREEN]; 
-    modify_time[AMBER]    = time[AMBER]; 
-}
 
 
 void fsm_for_input_processing(void)
@@ -67,21 +61,3 @@ void fsm_for_input_processing(void)
     }
 }
 
-void save_time()
-{
-    time[RED]   =   modify_time[RED]; 
-    time[GREEN] =   modify_time[GREEN]; 
-    time[AMBER] =   modify_time[AMBER]; 
-}
-
-void update_light_time(MODE mode)
-{
-    if (mode != NORMAL_MODE)
-    {
-        modify_time[mode - 1] = (modify_time[mode - 1] + 1) % 100;
-        seg_buffer[0] = modify_time[mode - 1] / 10;
-        seg_buffer[1] = modify_time[mode - 1] % 10;
-        seg_buffer[2] = seg_buffer[0];
-        seg_buffer[3] = seg_buffer[1];
-    }
-}

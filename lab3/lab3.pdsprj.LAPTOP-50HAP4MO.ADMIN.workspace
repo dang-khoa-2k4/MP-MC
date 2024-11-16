@@ -333,18 +333,28 @@
      <ITEM name="TopLineAddress">E000E000</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="600" x="688" flags="0000002b" y="620" h="400" pid="100" iid="1">
+   <POPUP w="600" x="688" flags="0000002a" y="620" h="400" pid="100" iid="1">
     <PROPERTIES>
+     <ITEM name="Breakpoint 0">"",800052E,0000,F3FF,9133,53922912
+</ITEM>
+     <ITEM name="Breakpoint 1">"",8000530,0000,CB66,9133,-340167256
+</ITEM>
+     <ITEM name="Breakpoint 2">"",800053C,0000,F67A,9133,1426516168
+</ITEM>
+     <ITEM name="Breakpoint 3">"",800054E,0000,0681,9133,1615340056
+</ITEM>
+     <ITEM name="Breakpoint 4">"",8000550,0000,B6B9,9133,1615340056
+</ITEM>
      <ITEM name="CaseSensitive">No</ITEM>
      <ITEM name="DISPADDRS">Yes</ITEM>
      <ITEM name="DISPLNUMS">No</ITEM>
      <ITEM name="DISPOPCODES">No</ITEM>
      <ITEM name="FIXUPBPTS">Yes</ITEM>
      <ITEM name="WordsOnly">No</ITEM>
-     <ITEM name="nBreakpoints">0</ITEM>
+     <ITEM name="nBreakpoints">4</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="300" x="708" flags="0000000b" y="720" h="300" pid="101" iid="1">
+   <POPUP w="300" x="708" flags="0000000a" y="720" h="300" pid="101" iid="1">
     <PROPERTIES>
      <ITEM name="Address Column Width">93</ITEM>
      <ITEM name="AutoResize">No</ITEM>

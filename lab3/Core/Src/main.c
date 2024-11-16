@@ -97,11 +97,12 @@ int main(void)
   light_2 = INIT;
   modify = INIT_SETTING;
   mode = NORMAL_MODE;
-  Scheduler_Add_Task(&fsm_for_input_processing, 1, freq_to_tick(FREQ_BUTTON));
+  Scheduler_Add_Task(&updateTimer, 1, 1);
   Scheduler_Add_Task(&modify_run, 1, 1);
   Scheduler_Add_Task(&automatic_run, 1, 1);
+  Scheduler_Add_Task(&button_reading, 1, 1);
   Scheduler_Add_Task(&scanning_seg_led, 3, freq_to_tick(FREQ_SCANNING));
-  Scheduler_Add_Task(&update_7seg_buffer_time, 7, ONE_SECOND);
+//  Scheduler_Add_Task(&update_7seg_buffer_time, 7, ONE_SECOND);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -257,7 +258,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     if (htim->Instance == TIM2)
     {
         Scheduler_Update();
-        updateTimer();
     }
 }
 /* USER CODE END 4 */

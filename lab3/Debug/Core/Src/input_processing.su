@@ -1,4 +1,1 @@
-../Core/Src/input_processing.c:13:6:clone_time	4	static
-../Core/Src/input_processing.c:21:6:fsm_for_input_processing	16	static
-../Core/Src/input_processing.c:70:6:save_time	4	static
-../Core/Src/input_processing.c:77:6:update_light_time	16	static
+../Core/Src/input_processing.c:15:6:fsm_for_input_processing	16	static

@@ -26,8 +26,6 @@ typedef enum {
 #define FREQ_BUTTON 100 // Hz -> 0.01s = 10ms
 
 void fsm_for_input_processing ( void ) ;
-void save_time();
-void update_light_time(MODE mode);
-void clone_time();
+
 
 #endif /* INC_INPUT_PROCESSING_H_ */

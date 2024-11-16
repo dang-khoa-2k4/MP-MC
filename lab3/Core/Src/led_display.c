@@ -78,6 +78,8 @@ void scanning_seg(uint8_t * seg, uint8_t * state, uint8_t size)
 void scanning_seg_led()
 {
     static uint8_t seg = 0;
+    if (mode == NORMAL_MODE)
+        generate_led_buffer(seg_buffer, time_buffer);
     scanning_seg(&seg, seg_buffer, NUM_OF_SEG_LED);
 }
 
@@ -89,7 +91,6 @@ void update_7seg_buffer_time()
             update_7seg_buffer(LIGHT_1_SEG, time_buffer[LIGHT_1_SEG] - 1);
         if (time_buffer[LIGHT_2_SEG] > 0)
             update_7seg_buffer(LIGHT_2_SEG, time_buffer[LIGHT_2_SEG] - 1);
-        generate_led_buffer(seg_buffer, time_buffer);
     }
 }
 

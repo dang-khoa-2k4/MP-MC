@@ -29,23 +29,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
  12 .comment      00000043  00000000  00000000  000200a5  2**0
                   CONTENTS, READONLY
- 13 .debug_info   000084e7  00000000  00000000  000200e8  2**0
+ 13 .debug_info   000084f5  00000000  00000000  000200e8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_abbrev 00001a1b  00000000  00000000  000285cf  2**0
+ 14 .debug_abbrev 00001a1b  00000000  00000000  000285dd  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_aranges 00000a38  00000000  00000000  00029ff0  2**3
+ 15 .debug_aranges 00000a38  00000000  00000000  00029ff8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_rnglists 000007d1  00000000  00000000  0002aa28  2**0
+ 16 .debug_rnglists 000007d1  00000000  00000000  0002aa30  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_macro  0001759c  00000000  00000000  0002b1f9  2**0
+ 17 .debug_macro  0001775a  00000000  00000000  0002b201  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   0000b1ae  00000000  00000000  00042795  2**0
+ 18 .debug_line   0000b486  00000000  00000000  0004295b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    00085ff8  00000000  00000000  0004d943  2**0
+ 19 .debug_str    00085ff8  00000000  00000000  0004dde1  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_frame  00002c7c  00000000  00000000  000d393c  2**2
+ 20 .debug_frame  00002c7c  00000000  00000000  000d3ddc  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000086  00000000  00000000  000d65b8  2**0
+ 21 .debug_line_str 00000086  00000000  00000000  000d6a58  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -616,6 +616,7 @@ void scanning_matrix()
  80004e8:	4b03      	ldr	r3, [pc, #12]	; (80004f8 <scanning_matrix+0x5c>)
  80004ea:	701a      	strb	r2, [r3, #0]
     //enable col 
+}
  80004ec:	bf00      	nop
  80004ee:	bd80      	pop	{r7, pc}
  80004f0:	40010c00 	.word	0x40010c00
@@ -1477,9 +1478,20 @@ __STATIC_FORCEINLINE void __disable_irq(void)
  8000a70:	200000e4 	.word	0x200000e4
 
 08000a74 <HAL_MspInit>:
+/* USER CODE END 0 */
+/**
+  * Initializes the Global MSP.
+  */
+void HAL_MspInit(void)
+{
  8000a74:	b480      	push	{r7}
  8000a76:	b083      	sub	sp, #12
  8000a78:	af00      	add	r7, sp, #0
+  /* USER CODE BEGIN MspInit 0 */
+
+  /* USER CODE END MspInit 0 */
+
+  __HAL_RCC_AFIO_CLK_ENABLE();
  8000a7a:	4b0e      	ldr	r3, [pc, #56]	; (8000ab4 <HAL_MspInit+0x40>)
  8000a7c:	699b      	ldr	r3, [r3, #24]
  8000a7e:	4a0d      	ldr	r2, [pc, #52]	; (8000ab4 <HAL_MspInit+0x40>)
@@ -1490,6 +1502,7 @@ __STATIC_FORCEINLINE void __disable_irq(void)
  8000a8a:	f003 0301 	and.w	r3, r3, #1
  8000a8e:	607b      	str	r3, [r7, #4]
  8000a90:	687b      	ldr	r3, [r7, #4]
+  __HAL_RCC_PWR_CLK_ENABLE();
  8000a92:	4b08      	ldr	r3, [pc, #32]	; (8000ab4 <HAL_MspInit+0x40>)
  8000a94:	69db      	ldr	r3, [r3, #28]
  8000a96:	4a07      	ldr	r2, [pc, #28]	; (8000ab4 <HAL_MspInit+0x40>)
@@ -1500,6 +1513,12 @@ __STATIC_FORCEINLINE void __disable_irq(void)
  8000aa2:	f003 5380 	and.w	r3, r3, #268435456	; 0x10000000
  8000aa6:	603b      	str	r3, [r7, #0]
  8000aa8:	683b      	ldr	r3, [r7, #0]
+  /* System interrupt init*/
+
+  /* USER CODE BEGIN MspInit 1 */
+
+  /* USER CODE END MspInit 1 */
+}
  8000aaa:	bf00      	nop
  8000aac:	370c      	adds	r7, #12
  8000aae:	46bd      	mov	sp, r7
@@ -1508,14 +1527,27 @@ __STATIC_FORCEINLINE void __disable_irq(void)
  8000ab4:	40021000 	.word	0x40021000
 
 08000ab8 <HAL_TIM_Base_MspInit>:
+* This function configures the hardware resources used in this example
+* @param htim_base: TIM_Base handle pointer
+* @retval None
+*/
+void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
+{
  8000ab8:	b580      	push	{r7, lr}
  8000aba:	b084      	sub	sp, #16
  8000abc:	af00      	add	r7, sp, #0
  8000abe:	6078      	str	r0, [r7, #4]
+  if(htim_base->Instance==TIM2)
  8000ac0:	687b      	ldr	r3, [r7, #4]
  8000ac2:	681b      	ldr	r3, [r3, #0]
  8000ac4:	f1b3 4f80 	cmp.w	r3, #1073741824	; 0x40000000
  8000ac8:	d113      	bne.n	8000af2 <HAL_TIM_Base_MspInit+0x3a>
+  {
+  /* USER CODE BEGIN TIM2_MspInit 0 */
+
+  /* USER CODE END TIM2_MspInit 0 */
+    /* Peripheral clock enable */
+    __HAL_RCC_TIM2_CLK_ENABLE();
  8000aca:	4b0c      	ldr	r3, [pc, #48]	; (8000afc <HAL_TIM_Base_MspInit+0x44>)
  8000acc:	69db      	ldr	r3, [r3, #28]
  8000ace:	4a0b      	ldr	r2, [pc, #44]	; (8000afc <HAL_TIM_Base_MspInit+0x44>)
@@ -1526,12 +1558,21 @@ __STATIC_FORCEINLINE void __disable_irq(void)
  8000ada:	f003 0301 	and.w	r3, r3, #1
  8000ade:	60fb      	str	r3, [r7, #12]
  8000ae0:	68fb      	ldr	r3, [r7, #12]
+    /* TIM2 interrupt Init */
+    HAL_NVIC_SetPriority(TIM2_IRQn, 0, 0);
  8000ae2:	2200      	movs	r2, #0
  8000ae4:	2100      	movs	r1, #0
  8000ae6:	201c      	movs	r0, #28
  8000ae8:	f000 f9d7 	bl	8000e9a <HAL_NVIC_SetPriority>
+    HAL_NVIC_EnableIRQ(TIM2_IRQn);
  8000aec:	201c      	movs	r0, #28
  8000aee:	f000 f9f0 	bl	8000ed2 <HAL_NVIC_EnableIRQ>
+  /* USER CODE BEGIN TIM2_MspInit 1 */
+
+  /* USER CODE END TIM2_MspInit 1 */
+  }
+
+}
  8000af2:	bf00      	nop
  8000af4:	3710      	adds	r7, #16
  8000af6:	46bd      	mov	sp, r7
@@ -1540,67 +1581,182 @@ __STATIC_FORCEINLINE void __disable_irq(void)
  8000afc:	40021000 	.word	0x40021000
 
 08000b00 <NMI_Handler>:
+/******************************************************************************/
+/**
+  * @brief This function handles Non maskable interrupt.
+  */
+void NMI_Handler(void)
+{
  8000b00:	b480      	push	{r7}
  8000b02:	af00      	add	r7, sp, #0
+  /* USER CODE BEGIN NonMaskableInt_IRQn 0 */
+
+  /* USER CODE END NonMaskableInt_IRQn 0 */
+  /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
+  while (1)
  8000b04:	e7fe      	b.n	8000b04 <NMI_Handler+0x4>
 
 08000b06 <HardFault_Handler>:
+
+/**
+  * @brief This function handles Hard fault interrupt.
+  */
+void HardFault_Handler(void)
+{
  8000b06:	b480      	push	{r7}
  8000b08:	af00      	add	r7, sp, #0
+  /* USER CODE BEGIN HardFault_IRQn 0 */
+
+  /* USER CODE END HardFault_IRQn 0 */
+  while (1)
  8000b0a:	e7fe      	b.n	8000b0a <HardFault_Handler+0x4>
 
 08000b0c <MemManage_Handler>:
+
+/**
+  * @brief This function handles Memory management fault.
+  */
+void MemManage_Handler(void)
+{
  8000b0c:	b480      	push	{r7}
  8000b0e:	af00      	add	r7, sp, #0
+  /* USER CODE BEGIN MemoryManagement_IRQn 0 */
+
+  /* USER CODE END MemoryManagement_IRQn 0 */
+  while (1)
  8000b10:	e7fe      	b.n	8000b10 <MemManage_Handler+0x4>
 
 08000b12 <BusFault_Handler>:
+
+/**
+  * @brief This function handles Prefetch fault, memory access fault.
+  */
+void BusFault_Handler(void)
+{
  8000b12:	b480      	push	{r7}
  8000b14:	af00      	add	r7, sp, #0
+  /* USER CODE BEGIN BusFault_IRQn 0 */
+
+  /* USER CODE END BusFault_IRQn 0 */
+  while (1)
  8000b16:	e7fe      	b.n	8000b16 <BusFault_Handler+0x4>
 
 08000b18 <UsageFault_Handler>:
+
+/**
+  * @brief This function handles Undefined instruction or illegal state.
+  */
+void UsageFault_Handler(void)
+{
  8000b18:	b480      	push	{r7}
  8000b1a:	af00      	add	r7, sp, #0
+  /* USER CODE BEGIN UsageFault_IRQn 0 */
+
+  /* USER CODE END UsageFault_IRQn 0 */
+  while (1)
  8000b1c:	e7fe      	b.n	8000b1c <UsageFault_Handler+0x4>
 
 08000b1e <SVC_Handler>:
+
+/**
+  * @brief This function handles System service call via SWI instruction.
+  */
+void SVC_Handler(void)
+{
  8000b1e:	b480      	push	{r7}
  8000b20:	af00      	add	r7, sp, #0
+
+  /* USER CODE END SVCall_IRQn 0 */
+  /* USER CODE BEGIN SVCall_IRQn 1 */
+
+  /* USER CODE END SVCall_IRQn 1 */
+}
  8000b22:	bf00      	nop
  8000b24:	46bd      	mov	sp, r7
  8000b26:	bc80      	pop	{r7}
  8000b28:	4770      	bx	lr
 
 08000b2a <DebugMon_Handler>:
+
+/**
+  * @brief This function handles Debug monitor.
+  */
+void DebugMon_Handler(void)
+{
  8000b2a:	b480      	push	{r7}
  8000b2c:	af00      	add	r7, sp, #0
+
+  /* USER CODE END DebugMonitor_IRQn 0 */
+  /* USER CODE BEGIN DebugMonitor_IRQn 1 */
+
+  /* USER CODE END DebugMonitor_IRQn 1 */
+}
  8000b2e:	bf00      	nop
  8000b30:	46bd      	mov	sp, r7
  8000b32:	bc80      	pop	{r7}
  8000b34:	4770      	bx	lr
 
 08000b36 <PendSV_Handler>:
+
+/**
+  * @brief This function handles Pendable request for system service.
+  */
+void PendSV_Handler(void)
+{
  8000b36:	b480      	push	{r7}
  8000b38:	af00      	add	r7, sp, #0
+
+  /* USER CODE END PendSV_IRQn 0 */
+  /* USER CODE BEGIN PendSV_IRQn 1 */
+
+  /* USER CODE END PendSV_IRQn 1 */
+}
  8000b3a:	bf00      	nop
  8000b3c:	46bd      	mov	sp, r7
  8000b3e:	bc80      	pop	{r7}
  8000b40:	4770      	bx	lr
 
 08000b42 <SysTick_Handler>:
+
+/**
+  * @brief This function handles System tick timer.
+  */
+void SysTick_Handler(void)
+{
  8000b42:	b580      	push	{r7, lr}
  8000b44:	af00      	add	r7, sp, #0
+  /* USER CODE BEGIN SysTick_IRQn 0 */
+
+  /* USER CODE END SysTick_IRQn 0 */
+  HAL_IncTick();
  8000b46:	f000 f8b5 	bl	8000cb4 <HAL_IncTick>
+  /* USER CODE BEGIN SysTick_IRQn 1 */
+
+  /* USER CODE END SysTick_IRQn 1 */
+}
  8000b4a:	bf00      	nop
  8000b4c:	bd80      	pop	{r7, pc}
 	...
 
 08000b50 <TIM2_IRQHandler>:
+
+/**
+  * @brief This function handles TIM2 global interrupt.
+  */
+void TIM2_IRQHandler(void)
+{
  8000b50:	b580      	push	{r7, lr}
  8000b52:	af00      	add	r7, sp, #0
+  /* USER CODE BEGIN TIM2_IRQn 0 */
+
+  /* USER CODE END TIM2_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim2);
  8000b54:	4802      	ldr	r0, [pc, #8]	; (8000b60 <TIM2_IRQHandler+0x10>)
  8000b56:	f000 ffff 	bl	8001b58 <HAL_TIM_IRQHandler>
+  /* USER CODE BEGIN TIM2_IRQn 1 */
+
+  /* USER CODE END TIM2_IRQn 1 */
+}
  8000b5a:	bf00      	nop
  8000b5c:	bd80      	pop	{r7, pc}
  8000b5e:	bf00      	nop

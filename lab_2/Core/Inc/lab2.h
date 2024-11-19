@@ -8,10 +8,6 @@
 #ifndef INC_LAB2_H_
 #define INC_LAB2_H_
 
-#include "main.h"
-#include <stdint.h>
-#include "scheduler.h"
-
 // Define part 
 #define SEG_ON 0
 #define SEG_OFF 1

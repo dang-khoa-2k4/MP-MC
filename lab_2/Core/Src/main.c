@@ -21,7 +21,6 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "lab2.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/

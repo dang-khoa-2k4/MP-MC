@@ -1,0 +1,7 @@
+../Core/Src/led_display.c:13:6:display7Seg	16	static
+../Core/Src/led_display.c:53:6:generate_led_buffer	16	static
+../Core/Src/led_display.c:61:6:update7SEG	24	static
+../Core/Src/led_display.c:70:6:scanning_seg	24	static
+../Core/Src/led_display.c:78:6:scanning_seg_led	8	static
+../Core/Src/led_display.c:86:6:update_7seg_buffer_time	8	static
+../Core/Src/led_display.c:97:6:update_7seg_buffer	16	static

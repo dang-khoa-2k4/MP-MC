@@ -4,7 +4,7 @@
  *  Created on: Sep 15, 2024
  *      Author: Nguyen Tran Dang Khoa
  */
-#include "lab2.h"
+#include "main.h"
 
 const uint16_t SEG[NUM_OF_SEG_LED] = {EN0_Pin, EN1_Pin, EN2_Pin, EN3_Pin};
 uint8_t led_buffer[] = {1, 2, 3, 4};

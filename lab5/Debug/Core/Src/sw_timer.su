@@ -1,0 +1,4 @@
+../Core/Src/sw_timer.c:12:6:clearTimer	16	static
+../Core/Src/sw_timer.c:18:6:setTimer	16	static
+../Core/Src/sw_timer.c:24:6:updateTimer	16	static
+../Core/Src/sw_timer.c:34:9:isTimerExpired	16	static

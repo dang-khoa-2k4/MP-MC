@@ -1,0 +1,4 @@
+../Core/Src/sw_timer.c:12:6:clearTimer	1
+../Core/Src/sw_timer.c:18:6:setTimer	1
+../Core/Src/sw_timer.c:24:6:updateTimer	3
+../Core/Src/sw_timer.c:34:9:isTimerExpired	2
